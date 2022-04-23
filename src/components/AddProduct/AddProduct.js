@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
+import toast, { Toaster } from 'react-hot-toast';
 
 const AddProduct = () => {
     const { register, handleSubmit } = useForm();
@@ -15,6 +16,7 @@ const AddProduct = () => {
             .then(res => res.json())
             .then(result => {
                 console.log(result);
+                toast.success('Product added successfully');
             });
     };
 
@@ -27,6 +29,10 @@ const AddProduct = () => {
                 <input className='my-2 px-2 py-1 fs-0' autoComplete='off' placeholder='Product Image URL' type="text" {...register("img")} />
                 <input className='my-2 px-2 py-1' type="submit" value='Add Product' />
             </form>
+            <Toaster
+                position="top-right"
+                reverseOrder={false}
+            ></Toaster>
         </div>
     );
 };
